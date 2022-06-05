@@ -82,7 +82,7 @@ def mouseDown(mouseKey):
     else:
         button = mouseKeys[mouseKey]
         mouse.press(button)
-        mouseKeyStates[mouseKey] = True
+    mouseKeyStates[mouseKey] = True
 
 def mouseUp(mouseKey):
     if(sys.platform == "linux"):
@@ -90,7 +90,7 @@ def mouseUp(mouseKey):
     else:
         button = mouseKeys[mouseKey]
         mouse.release(button)
-        mouseKeyStates[mouseKey] = False
+    mouseKeyStates[mouseKey] = False
 
 
 def main():
