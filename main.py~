@@ -43,7 +43,7 @@ def enableX11Keyboard():
         print("X11 not found")
 
 def keyboardDefaultHook(e):
-    if(e.name.lower() in allKeys): return
+    if(os.system != "linux" or e.name.lower() in allKeys): return
 
     if(e.event_type == 'down'):
         keyboard.press(e.name)
