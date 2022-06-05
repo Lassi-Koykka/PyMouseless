@@ -3,11 +3,11 @@ A cross-platform python script which allows you to control your mouse using the 
 
 ## How to use
 #### 1. First install the dependecies
-- **Globally** (**Linux:** Recommended, use sudo): \
-    `pip install keyboard mouse`
+- **Globally** ( **Required on Linux**, use sudo ): \
+    `pip install keyboard mouse psutil`
 
 - **Using pipenv:** \
-    `pipenv install keyboard mouse`
+    `pipenv install keyboard mouse psutil`
 
 #### 1.5 Linux users: install xdotool
 - Linux mouse clicks require xdotool to work due to limitations of the mouse library on linux
