@@ -31,4 +31,4 @@ A cross-platform python script which allows you to control your mouse using the 
     - **[How to get the id](https://askubuntu.com/a/178741)**
 
 ### 3.0 make the script easily runnable
-- Run it using python3 **OR** Create a shell script to run it and add it to the path
+- Run it using python3 (sudo required for linux) **OR** Create a shell script to run it and add it to the path
