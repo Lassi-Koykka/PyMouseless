@@ -9,6 +9,13 @@ import json;
 config = json.load(open(os.path.join(sys.path[0], "config.json")))
 KEYS = config.get('keybinds', {})
 BASE_SPEED = config.get('base_speed', 500)
+SCROLL_SPEED = config.get('scroll_speed', 0.01)
+MOVE_SPEEDS = config.get('move_speeds', {
+        "very_slow": 100,
+        "slow": 250,
+        "fast": 1500,
+        "very_fast": 3000 
+})
 POLL_RATE = config.get('poll_rate', 100)
 KEYBOARD_ID = config.get('keyboard_id', '-1')
 MASTER_ID = config.get('master_id', '-1')
@@ -122,13 +129,13 @@ def main():
             if(sys.platform == "linux"):
                 os.system(f"xdotool click 5")
             else:
-                mouse.wheel(-1)
+                mouse.wheel(-SCROLL_SPEED)  # type: ignore
             continue;
         elif(scrollup and not scrolldown):
             if(sys.platform == "linux"):
                 os.system(f"xdotool click 4")
             else:
-                mouse.wheel(1)
+                mouse.wheel(SCROLL_SPEED)  # type: ignore
             continue;
 
         # Sideways scroll on linux
@@ -152,14 +159,18 @@ def main():
         # Set speed
         # ! Slow is overrides fast
         speed = BASE_SPEED;
-        if(isPressed('very_slow')): 
-            speed = speed / 5
-        elif(isPressed('slow')): 
-            speed = speed / 2;
-        elif(isPressed('fast')): 
-            speed = speed * 3
-        elif(isPressed('very_fast')): 
-            speed = speed * 6
+        for speedModifier in MOVE_SPEEDS:
+            if(isPressed(speedModifier)):
+                speed =  MOVE_SPEEDS[speedModifier]
+                break;
+        # if(isPressed('very_slow')): 
+        #     speed = speed / 5
+        # elif(isPressed('slow')): 
+        #     speed = speed / 2;
+        # elif(isPressed('fast')): 
+        #     speed = speed * 3
+        # elif(isPressed('very_fast')): 
+        #     speed = speed * 6
 
         # Set direction
         if(up and not down):

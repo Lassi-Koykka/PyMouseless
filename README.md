@@ -14,6 +14,9 @@ A cross-platform python script which allows you to control your mouse using the 
 
 #### 2.0 Set your configurations in config.json
 - `"base_speed"` : Sets the base speed of the cursor
+- `"scroll_speed"` : **Doesn't work on Linux**
+    - Sets the scrolling speed
+- `"move_speeds"` :  Sets the speeds of the different movement speed modifiers
 - `"poll_rate"` : Sets the amount of times the mouse will be updated in one second
 - `"keybinds"` : Contains all your keybinds
     - **"scroll_left" and "scroll_right" only available in linux** \

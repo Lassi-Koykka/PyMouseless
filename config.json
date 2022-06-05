@@ -1,6 +1,13 @@
 {
-    "base_speed": 500,
     "poll_rate": 100,
+    "base_speed": 500,
+    "scroll_speed": 0.01,
+    "move_speeds": {
+        "very_slow": 100,
+        "slow": 250,
+        "fast": 1500,
+        "very_fast": 3000 
+    },
     "keyboard_id": 12,
     "master_id": 3,
     "keybinds": {
