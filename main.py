@@ -6,7 +6,7 @@ import sys;
 import os;
 import json;
 
-config = json.load(open('config.json'))
+config = json.load(open(os.path.join(sys.path[0], "config.json")))
 KEYS = config.get('keybinds', {})
 BASE_SPEED = config.get('base_speed', 500)
 POLL_RATE = config.get('poll_rate', 100)
