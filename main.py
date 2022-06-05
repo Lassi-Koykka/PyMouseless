@@ -19,10 +19,13 @@ MOVE_SPEEDS = config.get('move_speeds', {
 POLL_RATE = config.get('poll_rate', 100)
 KEYBOARD_ID = config.get('keyboard_id', '-1')
 MASTER_ID = config.get('master_id', '-1')
+CUSTOM_KEYBINDS = config.get('custom_keybinds', {})
 
 allKeys = []
 for(key, value) in KEYS.items():
     allKeys.extend(value)
+for key in CUSTOM_KEYBINDS:
+    allKeys.append(key)
 
 mouseKeys = {
     "1": "left",
@@ -50,12 +53,17 @@ def enableX11Keyboard():
         print("X11 not found")
 
 def keyboardDefaultHook(e):
-    if(e.name.lower() in allKeys): return
+    if(e.name.lower() in allKeys and not e.name.lower() in CUSTOM_KEYBINDS): return
+
+    # Run custom keybinds
+    key = e.name
+    if(e.name.lower() in CUSTOM_KEYBINDS):
+        key = CUSTOM_KEYBINDS[e.name.lower()]
 
     if(e.event_type == 'down'):
-        keyboard.press(e.name)
+        keyboard.press(key)
     else:
-        keyboard.release(e.name)
+        keyboard.release(key)
 
 
 def isPressed(label):
@@ -105,7 +113,6 @@ def main():
             except:
                 print(end="")
 
-
     while True:
         if(isPressed('quit')): 
             break;
@@ -113,10 +120,10 @@ def main():
         # HANDLE CLICKS
         for key in mouseKeys:
             if(isPressed(key) and not mouseKeyStates[key]):
-                print("Mouse down", key)
+                # print("Mouse down", key)
                 mouseDown(key)
             elif(not isPressed(key) and mouseKeyStates[key]):
-                print("Mouse up", key)
+                # print("Mouse up", key)
                 mouseUp(key)
 
         # HANDLE SCROLL
@@ -161,16 +168,9 @@ def main():
         speed = BASE_SPEED;
         for speedModifier in MOVE_SPEEDS:
             if(isPressed(speedModifier)):
+                print("Speed:", speedModifier)
                 speed =  MOVE_SPEEDS[speedModifier]
                 break;
-        # if(isPressed('very_slow')): 
-        #     speed = speed / 5
-        # elif(isPressed('slow')): 
-        #     speed = speed / 2;
-        # elif(isPressed('fast')): 
-        #     speed = speed * 3
-        # elif(isPressed('very_fast')): 
-        #     speed = speed * 6
 
         # Set direction
         if(up and not down):
@@ -198,12 +198,14 @@ def main():
 
         # Move mouse
         mouse.move(xDelta, yDelta, absolute=False);
+        # print(f"Move: {xDelta}, {yDelta}")
 
         # Wait for next poll
         time.sleep(1 / POLL_RATE);
 
 try:
-    main()
+    if(__name__ == "__main__"):
+        main()
 except Exception as e:
     print("ERROR",e)
 finally:

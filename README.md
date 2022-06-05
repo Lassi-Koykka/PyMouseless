@@ -29,6 +29,7 @@ A cross-platform python script which allows you to control your mouse using the 
     - Id of the master keyboard
     - Needed for disabling and re-enabling the x11 keyboard
     - **[How to get the id](https://askubuntu.com/a/178741)**
+- `"custom_keybinds"` : custom keybinds for mouse mode
 
 ### 3.0 make the script easily runnable
 - Run it using python3 (sudo required for linux) **OR** Create a shell script to run it and add it to the path

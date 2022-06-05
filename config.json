@@ -28,6 +28,10 @@
         "very_fast": ["capslock"],
         "quit": ["esc", "q"],
         "disabled": ["a"]
+    },
+    "custom_keybinds": {
+        "y": "ctrl+c",
+        "p": "ctrl+v"
     }
 
 }
