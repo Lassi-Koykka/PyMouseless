@@ -1,0 +1,26 @@
+{
+    "base_speed": 500,
+    "poll_rate": 100,
+    "keyboard_id": 12,
+    "master_id": 3,
+    "keybinds": {
+        "1": ["f"],
+        "2": ["d"],
+        "3": ["s"],
+        "scroll_down": ["a+j"],
+        "scroll_up": ["a+k"],
+        "scroll_left": ["a+h"],
+        "scroll_right": ["a+l"],
+        "up": ["k"],
+        "down": ["j"],
+        "left": ["h"],
+        "right": ["l"],
+        "very_slow": ["space"],
+        "slow": ["ctrl"],
+        "fast": ["shift"],
+        "very_fast": ["capslock"],
+        "quit": ["esc", "q"],
+        "disabled": ["a"]
+    }
+
+}
